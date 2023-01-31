@@ -7,6 +7,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/ExternalLibrary"/>
 	<classpathentry kind="lib" path="lib/entrada-1.0.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
