@@ -1,5 +1,7 @@
 package repoblacion.modelo;
 
+import java.util.Objects;
+
 public class Posicion {
 
 	private double x=0;
@@ -13,6 +15,9 @@ public class Posicion {
 		
 	}
 	public Posicion (Posicion p) {
+		if (p ==null) {
+			throw new NullPointerException("ERROR: No se puede copiar una posición nula.");
+		}
 		setX(p.getX());
 		setY(p.getY());
 		
@@ -23,7 +28,7 @@ public class Posicion {
 	public double distancia (Posicion posicion) {
 		double distancia=0;
 		if (posicion== null) {
-			throw new NullPointerException("ERROR: la posicion no puede ser nula");
+			throw new NullPointerException("ERROR: No se puede calcular la distancia a una posición nula.");
 		}
 		else 
 
@@ -49,16 +54,39 @@ public class Posicion {
 	}
 
 	public double getX() {
-		return Math.round(x*1000)/1000d;
+		x = Math.round(x)*1000/1000d;		
+		return x;
 	}
 
 	public double getY() {
-		return Math.round(y*1000)/1000d;
+		y = Math.round(y)*1000/1000d;
+		return y;
 	}
 	
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(x, y);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Posicion other = (Posicion) obj;
+		return Double.doubleToLongBits(x) == Double.doubleToLongBits(other.x)
+				&& Double.doubleToLongBits(y) == Double.doubleToLongBits(other.y);
+	}
 	@Override
 	public String toString() {
-		return "posición=(x=" + getX() + ", y=" + getY()+")";
+		
+		
+		return "x=" + String.format("%.3f",getX()) + ", y=" + String.format("%.3f",getY());
 	}
 
 	

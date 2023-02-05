@@ -5,8 +5,11 @@ public class Arbol {
 	private Posicion posicion;
 	private Especie especie;
 	
-	public Arbol (Posicion posicion, Especie especie) {
-		
+	public Arbol (Especie especie, Posicion posicion) {
+		if (especie ==null)
+			throw new NullPointerException();
+		if (posicion==null)
+			throw new NullPointerException();
 		setEspecie(especie);
 		setPosicion(posicion);
 		
