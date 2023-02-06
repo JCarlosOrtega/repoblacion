@@ -2,7 +2,7 @@ package repoblacion.modelo;
 
 public enum Especie {
 
-	ALAMO("Álamo"), ENCINA("Encina"), CASTANO("Castaño"), CIPRES("Ciprés"), PINO("Pino"), ROBLE("Roble mediterráneo"),
+	ALAMO("Álamo"), ENCINA("Encina"), CASTANO("Castaño"), CIPRES("Ciprés"), PINO("Pino Piñonero"), ROBLE("Roble mediterráneo"),
 	OLIVO("Olivo");
 	
 	

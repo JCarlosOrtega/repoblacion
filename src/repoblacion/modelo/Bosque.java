@@ -11,9 +11,9 @@ public class Bosque {
 
 	private Arbol[] arboles;
 	
-	public final int MAX_ALTURA=500;
-	public final int MINIMO=10;
-	public final int MAX_ANCHURA=1000;
+	public final static int MAX_ALTURA=500;
+	public final static int MINIMO=10;
+	public final static int MAX_ANCHURA=1000;
 	public final int MAX_ESPECIES=4;
 	
 	private Arbol arbolMasAlejado;
@@ -24,6 +24,12 @@ public class Bosque {
 
 	
 	public Bosque(int ancho, int alto, int poblacion) {
+		if (ancho < 10)
+			throw new IllegalArgumentException("ERROR: Anchura no válida.");
+		if (alto < 10)
+			throw new IllegalArgumentException("ERROR: Altura no válida.");
+		if (poblacion <= 0)
+			throw new IllegalArgumentException("ERROR: La población debe ser mayor que cero.");
 		setAlto(alto);
 		setAncho(ancho);
 		checkPoblacion(poblacion);
@@ -42,7 +48,7 @@ public class Bosque {
 
 	public void checkPoblacion(int poblacion) {
 		if (poblacion > 2*(ancho+alto)) {
-			throw new IllegalArgumentException("ERROR: la población");
+			throw new IllegalArgumentException("ERROR: La población no puede superar el perímetro del bosque.");
 		}
 		
 		
@@ -75,6 +81,7 @@ public class Bosque {
 						}
 					}
 				}
+				//maximoEspecies(arbolAleatorio);
 				ordenEspecies[i] = arbolAleatorio;
 			}
 
@@ -111,6 +118,25 @@ public class Bosque {
 				
 	}
 
+	// No estoy seguro de que me funcione, creo que se salta las restricciones
+//	public int maximoEspecies(int arbol) {
+//		int[] maxEspecies = new int[MAX_ESPECIES];
+//		maxEspecies[0]= arbol;
+//		if (maxEspecies[0] == arbol) {
+//			return arbol;
+//		}
+//		else {
+//			for (int i = 0; i < maxEspecies.length; i++) {
+//			if ((maxEspecies[i] != arbol)|| (maxEspecies[i-1] != arbol)|| (maxEspecies[i-2]!= arbol) || (maxEspecies[i-3]!= arbol)) {
+//			maxEspecies[i]=arbol;
+//			}else {
+//				arbol=generador.nextInt(0, 6);
+//			}
+//			
+//			}
+//		}
+//		return arbol;
+//	}
 
 	public Posicion posicionAleatoria() {
 		double posicionX= generador.nextDouble(-ancho/2, ancho/2);
@@ -127,7 +153,7 @@ public class Bosque {
 	public void realizarCalculos() {
 		Posicion centro = new Posicion(0,0);
 		Posicion posicionLejos = new Posicion(1,1);
-		Posicion posicionMasLejos = new Posicion(10,10);
+		Posicion posicionMasLejos = new Posicion(3,3);
 		Posicion posicionCerca = new Posicion(10,10);
 	
 		for (int i=0; i< arboles.length;i++) {

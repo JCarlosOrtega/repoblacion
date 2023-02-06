@@ -7,15 +7,17 @@ public class Arbol {
 	
 	public Arbol (Especie especie, Posicion posicion) {
 		if (especie ==null)
-			throw new NullPointerException();
+			throw new NullPointerException("ERROR: La especie no puede ser nula.");
 		if (posicion==null)
-			throw new NullPointerException();
+			throw new NullPointerException("ERROR: La posición no puede ser nula.");
 		setEspecie(especie);
 		setPosicion(posicion);
 		
 	}
 
 	public Arbol (Arbol a) {
+		if (a == null)
+			throw new NullPointerException("ERROR: No se puede copiar un árbol nulo.");
 		setEspecie(a.getEspecie());
 		setPosicion(a.getPosicion());
 	}
@@ -33,7 +35,7 @@ public class Arbol {
 	}
 
 	private void setEspecie(Especie especie) {
-		if (posicion==null)
+		if (especie==null)
 			throw new NullPointerException("ERROR: la especie no puede ser nula");
 		
 		this.especie = especie;
@@ -50,7 +52,7 @@ public class Arbol {
 
 	@Override
 	public String toString() {
-		return "arbol: especie= (" + getEspecie()+") ," + getPosicion();
+		return "especie="+ getEspecie() +", posicion=(" + getPosicion()+")";
 	}
 	
 	
